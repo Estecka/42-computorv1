@@ -2,6 +2,7 @@ HDRS = \
 	Polynomial.hpp
 
 SRCS = main.cpp \
+	ptoa.cpp \
 
 OBJS = ${SRCS:.cpp=.o}
 
@@ -13,7 +14,7 @@ CPPFLAGS = -Wall -Wextra
 all: headers_test ${NAME}
 
 ${NAME}: ${HDRS} ${OBJS}
-	${CXX} ${HDRS} ${LIBS} -o ${NAME} ${CPPFLAGS}
+	${CXX} ${OBJS} -o ${NAME} ${CPPFLAGS}
 
 ${OBJS}: ${HDRS}
 

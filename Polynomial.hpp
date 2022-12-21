@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/21 17:24:51 by abaur            ###   ########.fr       */
+/*   Updated: 2022/12/21 17:37:25 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ typedef float	Polynomial[3];
  * 	This will point to the null-terminator if the expression is valid.
  */
 const char*	atop(const char* str, Polynomial& outPoly);
+
+/**
+ * @return	A reduced string representation of the given polynomial.
+ */
+std::string	ptoa(const Polynomial& poly);
 
 /**
  * Solves a polynomial equation
