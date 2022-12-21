@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:51:57 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/21 18:43:55 by abaur            ###   ########.fr       */
+/*   Updated: 2022/12/21 20:21:08 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,44 +21,46 @@
  * @param power 	b
  * @return	True if anything was output. False if the expression is 0.
  */
-static bool	PowToString(std::stringstream& cout, float factor, int power){
+static bool	PowToString(std::stringstream& cout, float factor, int power, bool pretty){
 	bool printX = power && factor;
 	bool printPower = printX && (power > 1);
 	bool printFactor = factor && (factor!=1 || !printX);
 
 	if (printFactor)
 		cout << factor;
-	if (printFactor && printX)
-		cout << " * ";
+	if (printFactor && printX && !pretty)
+		cout << "*";
 	if (printX)
-		cout << "X";
+		cout << (pretty?"x":"X");
 	if (printPower)
-		cout << "^" << power;
+		cout << (pretty?"²":"^2");
 
 	return printFactor || printX || printPower;
 }
 
-std::string	ptoa(const Polynomial& poly){
+std::string	ptoa(const Polynomial& poly, bool pretty){
 	std::stringstream	cout;
 	bool empty = true;
 
 	for (int i=2; 0<=i; i--)
 	if (poly[i]) {
 		if (empty)
-			PowToString(cout, poly[i], i);
+			PowToString(cout, poly[i], i, pretty);
 		else if (poly[i] < 0){
 			cout << " - ";
-			PowToString(cout, -poly[i], i);
+			PowToString(cout, -poly[i], i, pretty);
 		}
 		else {
 			cout << " + ";
-			PowToString(cout, poly[i], i);
+			PowToString(cout, poly[i], i, pretty);
 		}
 		empty = false;
 	}
 
 	if (empty)
-		return "0";
-	else
+		return "0 = 0";
+	else {
+		cout << " = 0";
 		return cout.str();
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/21 17:37:25 by abaur            ###   ########.fr       */
+/*   Updated: 2022/12/21 20:26:49 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ typedef float	Polynomial[3];
 const char*	atop(const char* str, Polynomial& outPoly);
 
 /**
- * @return	A reduced string representation of the given polynomial.
+ * Returns	A reduced string representation of the given polynomial.
+ * @param pretty	Will return a prettier, more condensed representation,
+ *  using special characters for exponents.
  */
-std::string	ptoa(const Polynomial& poly);
+std::string	ptoa(const Polynomial& poly, bool pretty=false);
 
 /**
  * Solves a polynomial equation
