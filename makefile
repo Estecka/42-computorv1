@@ -2,6 +2,7 @@ HDRS = \
 	Polynomial.hpp
 
 SRCS = main.cpp \
+	atop.cpp \
 	ptoa.cpp \
 
 OBJS = ${SRCS:.cpp=.o}

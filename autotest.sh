@@ -1,13 +1,7 @@
 #!/bin/bash
 
 make \
-&& ./computor $@ 0 0 0 \
-&& ./computor $@ 0 0 1 \
-&& ./computor $@ 0 1 1 \
-&& ./computor $@ 1 1 1 \
-&& ./computor $@ 4 3 2 \
-&& ./computor $@ 3 2 1 \
-&& ./computor $@ 2 1 0 \
-&& ./computor $@ 1 2 3 \
-&& ./computor $@ 0 1 2 \
+&& ./computor $@ "3x^2  +  2x + 1" \
+&& ./computor $@ "4*X^2  +  3 * x^1  +  2 = 0" \
+&& ./computor $@ "4*x*X^1 -   2 *3 * x^1   +   2 = 1x^2 - 15" \
 ;

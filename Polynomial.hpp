@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/21 20:26:49 by abaur            ###   ########.fr       */
+/*   Updated: 2022/12/22 02:47:54 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ typedef float	Polynomial[3];
  * Parses a string representing a polynomial.
  * @param str	The string to parse.
  * @param outPoly	Ouputs the resulting polynomial.
- * @return	The first invalid character in the expression.
- * 	A valid will still be produced for the preceding characters.
- * 	This will point to the null-terminator if the expression is valid.
+ * @throw	std::runtime_error if the expression is invalid.
  */
-const char*	atop(const char* str, Polynomial& outPoly);
+void	atop(const char* str, Polynomial& outPoly);
 
 /**
  * Returns	A reduced string representation of the given polynomial.
