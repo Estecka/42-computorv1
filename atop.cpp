@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 01:14:57 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/22 18:05:31 by abaur            ###   ########.fr       */
+/*   Updated: 2022/12/23 18:49:12 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,63 @@ static const char*	SkipSpace(const char* str){
 	return str;
 }
 
+static char	GetPrettyChar(const char*& str){
+	static const char*const charset[] = {"⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁺","⁻"};
+	static const char*const transchar = "0123456789+-";
+	for (int chr=0; chr<12; chr++)
+	for (int bit=0; true;   bit++){
+		if (!charset[chr][bit]){
+			str = str+bit;
+			return transchar[chr];
+		}
+		if (charset[chr][bit] != str[bit])
+			break;
+	}
+
+	return '\0';
+}
+
+static bool	GetPrettyExponent(const char*& str, int& outPower){
+	char c;
+	int sign = 1;
+	bool hasDigit = false;
+
+	if (!(c = GetPrettyChar(str)))
+		return false;
+	outPower = 0;
+	if (c == '-')
+		sign = -1;
+	else if (c != '+')
+		hasDigit=true, outPower = c - '0';
+
+	while((c = GetPrettyChar(str))){
+		if ('0' < c && c < '9')
+			hasDigit=true, outPower = (10*outPower) + (sign*(c-'0'));
+		else
+			throw std::runtime_error("Invalid pretty exponent");
+	}
+
+	if (!hasDigit)
+		throw std::runtime_error("Invalid pretty exponent");
+
+	return true;
+}
+
+static bool	GetExponent(const char*& str, int& outPower){
+	if (*str != '^')
+		return false;
+	else {
+		char* terminator;
+		str++;
+		outPower = std::strtol(str, &terminator, 10);
+		if (str == terminator)
+			throw std::runtime_error("Invalid exponent");
+		else
+			str = terminator;
+		return true;
+	}
+}
+
 /**
  * @param outPower	The resulting power of X, or 0 if none was found.
  * @return	Whether a valid power of X was found.
@@ -33,17 +90,8 @@ static bool	GetXPower(const char*& str, int& outPower){
 	}
 	else {
 		str++;
-		if (*str == '^'){
-			char* terminator;
-			str++;
-			outPower = std::strtol(str, &terminator, 10);
-			if (str == terminator)
-				throw std::runtime_error("Invalid exponent");
-			else
-				str = terminator;
-		}
-		else
-			outPower = 1;
+		outPower = 1;
+		GetExponent(str, outPower) || GetPrettyExponent(str, outPower);
 		return true;
 	}
 }
@@ -149,5 +197,5 @@ extern void	atop(const char* str, Polynomial& outPoly){
 	}
 
 	if (*str)
-		throw std::runtime_error("Unexpected character in equation");
+		throw std::runtime_error("Unexpected character after equation");
 }
