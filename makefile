@@ -5,6 +5,9 @@ SRCS = main.cpp \
 	atop.cpp \
 	ptoa.cpp \
 
+LIBS = \
+	./logutil/logutil.a \
+
 OBJS = ${SRCS:.cpp=.o}
 
 NAME =  computor
@@ -14,8 +17,8 @@ CPPFLAGS = -Wall -Wextra
 
 all: headers_test ${NAME}
 
-${NAME}: ${HDRS} ${OBJS}
-	${CXX} ${OBJS} -o ${NAME} ${CPPFLAGS}
+${NAME}: ${HDRS} ${OBJS} ${LIBS}
+	${CXX} ${OBJS} ${LIBS} -o ${NAME} ${CPPFLAGS}
 
 ${OBJS}: ${HDRS}
 
