@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 01:14:57 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/23 18:49:12 by abaur            ###   ########.fr       */
+/*   Updated: 2022/12/23 19:02:23 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ extern void	atop(const char* str, Polynomial& outPoly){
 		bzero(anti, sizeof(Polynomial));
 		GetEqHalf(++str, anti);
 
-		for (int i=0; i<2; i++)
+		for (int i=0; i<3; i++)
 			outPoly[i] -= anti[i];
 	}
 
