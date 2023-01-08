@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:33:32 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/23 16:47:24 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/08 16:13:23 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ extern int	main(int argc, char** argv){
 	try {
 		Polynomial	poly;
 		atop(expr, poly);
-		std::cout << LOG_YELLOW << ptoa(poly, pretty) << LOG_CLEAR << std::endl;
+		std::cout << LOG_CYAN << ptoa(poly, pretty) << LOG_CLEAR << std::endl;
 	}
 	catch (std::exception& e){
 		std::cerr << LOG_BOLD_RED "[ERR] " LOG_RED << e.what() << LOG_CLEAR << std::endl;

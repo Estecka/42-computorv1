@@ -6,14 +6,20 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 01:14:57 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/23 19:02:23 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/08 16:18:36 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Polynomial.hpp"
 
-#include <cstring>
+#include <map>
 #include <stdexcept>
+#include <cstring>
+
+/**
+ * Represents a polynomial of an arbitrary degree
+ */
+typedef std::map<int, float>	PolyDraft;
 
 
 static const char*	SkipSpace(const char* str){
@@ -170,32 +176,42 @@ static int	GetAdd(const char*& str){
 /**
  * Parses one half of an equation; separated by '='.
  */
-static void GetEqHalf(const char*& str, Polynomial& outPoly){
+static void GetEqHalf(const char*& str, PolyDraft& outPolydraft){
 	int   sign = 1;
 	float factor;
 	int   power;
 
 	do {
 		GetAddOperand(str, factor, power);
-		if (power < 0 || 2 < power)
-			throw std::out_of_range("Unsupported power of X");
-		outPoly[power] += factor * sign;
+		outPolydraft[power] += factor * sign;
 	} while( (sign=GetAdd(str)) );
 }
 
 extern void	atop(const char* str, Polynomial& outPoly){
-	bzero(outPoly, sizeof(Polynomial));
-	GetEqHalf(str, outPoly);
+	PolyDraft	left;
+
+	GetEqHalf(str, left);
 
 	if (*str == '='){
-		Polynomial anti;
-		bzero(anti, sizeof(Polynomial));
-		GetEqHalf(++str, anti);
+		PolyDraft right;
+		GetEqHalf(++str, right);
 
-		for (int i=0; i<3; i++)
-			outPoly[i] -= anti[i];
+		for (PolyDraft::iterator it=right.begin(); it!=right.end(); it++)
+			left[it->first] -= it->second;
 	}
 
 	if (*str)
-		throw std::runtime_error("Unexpected character after equation");
+		throw std::runtime_error("Unexpected character");
+
+	bzero(outPoly, sizeof(Polynomial));
+	for (PolyDraft::iterator it=left.begin(); it!=left.end(); it++)
+	{
+		int   pow = it->first;
+		float fac = it->second;
+
+		if (0<=pow && pow<=2)
+			outPoly[pow] += fac;
+		else if (fac != 0)
+			throw std::out_of_range("Unsupported power of X");
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2022/12/22 02:47:54 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/08 16:05:11 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef float	Polynomial[3];
  * Parses a string representing a polynomial.
  * @param str	The string to parse.
  * @param outPoly	Ouputs the resulting polynomial.
- * @throw	std::runtime_error if the expression is invalid.
+ * @throw
+ * 	std::runtime_error if the expression is invalid.
+ * 	std::out_of_range if the polynomial is of a degree greater than 2.
  */
 void	atop(const char* str, Polynomial& outPoly);
 
