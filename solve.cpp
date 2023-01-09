@@ -6,55 +6,58 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 16:36:52 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/09 16:53:39 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/09 17:08:47 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Polynomial.hpp"
 
-static int	Deg0Solve (const Polynomial& poly, float& outDis, float (&outSol)[2]){
-	outDis = 0;
+#include <cstring>
+
+static void	Deg0Solve (const Polynomial& poly, Solution& outSol){
+	outSol.discriminant = 0;
 	if (poly[0])
-		return 0;
+		outSol.solutionCount = 0;
 	else
-		return -1;
+		outSol.solutionCount = -1;
 }
 
-static int	Deg1Solve (const Polynomial& poly, float& outDis, float (&outSol)[2]){
-	outDis = poly[1] * poly[1];
-	*outSol = -poly[0] / poly[1];
-	return 1;
+static void	Deg1Solve (const Polynomial& poly, Solution& outSol){
+	outSol.discriminant = poly[1] * poly[1];
+	*outSol.solutions = -poly[0] / poly[1];
+	outSol.solutionCount = 1;
 }
 
-static int	Deg2Solve (const Polynomial& poly, float& outDis, float (&outSol)[2]){
-	outDis = (poly[1] * poly[1]) - (4 * poly[2] * poly[0]);
+static void	Deg2Solve (const Polynomial& poly, Solution& outSol){
+	outSol.discriminant = (poly[1] * poly[1]) - (4 * poly[2] * poly[0]);
 
-	if (outDis == 0){
-		*outSol = (-poly[1]) / (2*poly[2]);
-		return 1;
+	if (outSol.discriminant == 0){
+		*outSol.solutions = (-poly[1]) / (2*poly[2]);
+		outSol.solutionCount = 1;
 	}
-	else if (outDis > 0){
+	else if (outSol.discriminant > 0){
 		float disRoot = -1; // to do
-		outSol[0] = (-poly[1] - disRoot) / (2*poly[2]);
-		outSol[1] = (-poly[1] + disRoot) / (2*poly[2]);
-		return 2;
+		outSol.solutions[0] = (-poly[1] - disRoot) / (2*poly[2]);
+		outSol.solutions[1] = (-poly[1] + disRoot) / (2*poly[2]);
+		outSol.solutionCount = 2;
 	} 
 	else
-		return 0;
+		outSol.solutionCount = 0;
 }
 
-extern int	Solve(const Polynomial& poly, int& outDeg, float& outDis, float (&outSol)[2]){
-	if (poly[2] != 0)
-		outDeg = 2;
-	else if (poly[1] != 0)
-		outDeg = 1;
-	else
-		outDeg = 0;
+extern void	Solve(const Polynomial& poly, Solution& outSol){
+	bzero(&outSol, sizeof(outSol));
 
-	switch (outDeg){
-		case 2: return Deg2Solve(poly, outDis, outSol);
-		case 1: return Deg1Solve(poly, outDis, outSol);
-		case 0: return Deg0Solve(poly, outDis, outSol);
-		default: return 0;
+	if (poly[2] != 0){
+		outSol.degree = 2;
+		Deg2Solve(poly, outSol);
+	}
+	else if (poly[1] != 0){
+		outSol.degree = 1;
+		Deg1Solve(poly, outSol);
+	}
+	else{
+		outSol.degree = 0;
+		Deg0Solve(poly, outSol);
 	}
 }

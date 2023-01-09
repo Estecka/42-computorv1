@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/08 17:22:15 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/09 17:03:58 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
  * Each index representing the factor for the corresponding power of X.
  */
 typedef float	Polynomial[3];
+
+struct	Solution {
+	int  	degree;
+	float	discriminant;
+	/*
+ 	 * The number of solutions between 0 and 2, or -1 if all real numbers 
+	 * are solutions.
+	 */
+	int  	solutionCount;
+	float	solutions[2];
+};
 
 /**
  * Parses a string representing a polynomial.
@@ -40,10 +51,8 @@ std::string	ptoa(const Polynomial& poly, bool pretty=false);
 /**
  * Solves a polynomial equation
  * @param poly	The polynomial to solve
- * @param outDeg	Outputs the degree of the polynomial.
- * @param outDis	Outputs the discriminant of the polynomial.
- * @param outSol	Outputs the solution(s) of the polynomial.
- * @return	The number of solutions, between 0 and 2. 
- * 	Or -1 if all real numbers are solutions.
+ * @param outSol	Outputs the solutions, and other informations about the polynomial
  */
-int	Solve(const Polynomial& poly, int& outDeg, float& outDis, float (&outSol)[2]);
+void	Solve(const Polynomial& poly, Solution& outSol);
+
+std::string	Format(const Polynomial& poly, const Solution& sol);
