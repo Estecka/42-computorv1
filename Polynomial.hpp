@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/09 17:03:58 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/09 17:11:10 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,4 @@ std::string	ptoa(const Polynomial& poly, bool pretty=false);
  */
 void	Solve(const Polynomial& poly, Solution& outSol);
 
-std::string	Format(const Polynomial& poly, const Solution& sol);
+std::string	SolutionFormat(const Polynomial& poly, const Solution& sol);
