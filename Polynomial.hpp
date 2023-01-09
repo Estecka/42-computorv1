@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/08 16:05:11 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/08 17:22:15 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ std::string	ptoa(const Polynomial& poly, bool pretty=false);
  * @param outDeg	Outputs the degree of the polynomial.
  * @param outDis	Outputs the discriminant of the polynomial.
  * @param outSol	Outputs the solution(s) of the polynomial.
- * @return	A formatted string presenting all the results.
+ * @return	The number of solutions, between 0 and 2. 
+ * 	Or -1 if all real numbers are solutions.
  */
-std::string	Solve(const Polynomial& poly, int& outDeg, float& outDis, float (&outSol)[2]);
+int	Solve(const Polynomial& poly, int& outDeg, float& outDis, float (&outSol)[2]);
