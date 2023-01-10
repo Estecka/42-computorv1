@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:33:32 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/10 14:27:25 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/10 16:28:14 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,39 @@
 
 #include <iostream>
 #include <stdexcept>
+
+static float	Compute(Polynomial poly, float x){
+	return (poly[2]*x*x) + (poly[1]*x) + (poly[0]);
+}
+
+static int	Check(Polynomial poly, Solution sol){
+	float r[2] = { 0, 0 };
+	float t[2] = { 0, 0 };
+
+	if (sol.solutionCount >= 2)
+		r[1] = Compute(poly, t[1]=sol.solutions[1]);
+	if (sol.solutionCount >= 1)
+		r[0] = Compute(poly, t[0]=sol.solutions[0]);
+	if (sol.solutionCount < 0){
+		r[0] = Compute(poly, t[0]=rand()/float(RAND_MAX));
+		r[1] = Compute(poly, t[1]=rand()/float(RAND_MAX));
+	}
+
+	if (sol.solutionCount == 0){
+		std::cout << LOG_BOLD_YELLOW "Check manually" LOG_CLEAR << std::endl;
+		return EXIT_SUCCESS;
+	}
+	else if (!r[0] && !r[1]){
+		std::cout << LOG_BOLD_GREEN "Solutions OK" LOG_CLEAR << std::endl;
+		return EXIT_SUCCESS;
+	}
+	else {
+		for (int i=0; i<2; i++)
+		if (r[i])
+			std::cout << LOG_BOLD_RED "KO: f("<<t[i]<<") = " << r[i] << LOG_CLEAR << std::endl;
+		return EXIT_FAILURE;
+	}
+}
 
 static void	Reduce(const char* expr, bool pretty){
 	std::cout << "┌─ " LOG_BOLD_CLEAR << expr << std::endl << LOG_CLEAR "└> ";
@@ -31,7 +64,7 @@ static void	Reduce(const char* expr, bool pretty){
 }
 
 static void	Solve(const char* expr, bool pretty){
-	std::cout << "Base form: " LOG_BOLD_CLEAR << expr << LOG_CLEAR << std::endl;
+	std::cout << "Input form:   " LOG_BOLD_CLEAR << expr << LOG_CLEAR << std::endl;
 	try {
 		Polynomial	poly;
 		Solution	solution;
@@ -39,7 +72,10 @@ static void	Solve(const char* expr, bool pretty){
 
 		atop(expr, poly);
 		PolySolve(poly, solution);
-		std::cout << SolutionFormat(poly, solution, pretty) << std::endl;
+		std::cout << SolutionFormat(poly, solution, pretty);
+		int r = Check(poly, solution);
+		std::cout << std::endl;
+		exit (r);
 	}
 	catch (std::exception& e){
 		std::cerr << LOG_BOLD_RED "[ERR] " LOG_RED << e.what() << LOG_CLEAR << std::endl;
