@@ -3,10 +3,10 @@
 cd $(dirname $(realpath "$0"));
 
 make \
-&& ./test/bad_syntax.sh $@ \
-&& ./test/pretty_syntax.sh $@ \
-&& ./test/hyperdegree.sh $@ \
+&& ./test/bad_syntax.sh $@ 2>/dev/null \
+&& ./test/hyperdegree.sh $@ 2>/dev/null \
 && ./test/fake_hyperdegree.sh $@ \
+&& ./test/pretty_syntax.sh $@ \
 && echo -e "\n\t# Miscellany" \
 && ./computor $@ "3x^2  +  2x + 1" \
 && ./computor $@ "1 + 2x + 3x^2" \

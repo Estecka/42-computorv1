@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/09 17:11:10 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/10 14:27:10 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ std::string	ptoa(const Polynomial& poly, bool pretty=false);
  * @param poly	The polynomial to solve
  * @param outSol	Outputs the solutions, and other informations about the polynomial
  */
-void	Solve(const Polynomial& poly, Solution& outSol);
+void	PolySolve(const Polynomial& poly, Solution& outSol);
 
-std::string	SolutionFormat(const Polynomial& poly, const Solution& sol);
+std::string	SolutionFormat(const Polynomial& poly, const Solution& sol, bool pretty=false);

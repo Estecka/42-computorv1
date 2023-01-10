@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 16:36:52 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/09 17:08:47 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/10 14:22:19 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	Deg2Solve (const Polynomial& poly, Solution& outSol){
 		outSol.solutionCount = 0;
 }
 
-extern void	Solve(const Polynomial& poly, Solution& outSol){
+extern void	PolySolve(const Polynomial& poly, Solution& outSol){
 	bzero(&outSol, sizeof(outSol));
 
 	if (poly[2] != 0){

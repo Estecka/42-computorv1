@@ -3,7 +3,9 @@ HDRS = \
 
 SRCS = main.cpp \
 	atop.cpp \
+	format.cpp \
 	ptoa.cpp \
+	solve.cpp \
 
 LIBS = \
 	./logutil/logutil.a \
