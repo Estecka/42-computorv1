@@ -6,11 +6,12 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 16:36:52 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/10 14:22:19 by abaur            ###   ########.fr       */
+/*   Updated: 2023/01/31 14:43:15 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Polynomial.hpp"
+#include "sqrt/sqrt.hpp"
 
 #include <cstring>
 
@@ -36,7 +37,7 @@ static void	Deg2Solve (const Polynomial& poly, Solution& outSol){
 		outSol.solutionCount = 1;
 	}
 	else if (outSol.discriminant > 0){
-		float disRoot = -1; // to do
+		float disRoot = sqrt(outSol.discriminant);
 		outSol.solutions[0] = (-poly[1] - disRoot) / (2*poly[2]);
 		outSol.solutions[1] = (-poly[1] + disRoot) / (2*poly[2]);
 		outSol.solutionCount = 2;

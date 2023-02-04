@@ -9,6 +9,7 @@ SRCS = main.cpp \
 
 LIBS = \
 	./logutil/logutil.a \
+	./sqrt/sqrt.a \
 
 OBJS = ${SRCS:.cpp=.o}
 
@@ -19,10 +20,10 @@ CPPFLAGS = -Wall -Wextra
 
 all: headers_test ${NAME}
 
-${NAME}: ${HDRS} ${OBJS} ${LIBS}
+${NAME}: ${LIBS} ${HDRS} ${OBJS}
 	${CXX} ${OBJS} ${LIBS} -o ${NAME} ${CPPFLAGS}
 
-${OBJS}: ${HDRS}
+${OBJS}: ${LIBS} ${HDRS}
 
 %.a: lib
 	make $(@F) -C $(@D)
