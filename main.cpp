@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:33:32 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 14:06:44 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 15:40:09 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 #include <iostream>
 #include <stdexcept>
 
-#define CHECK_DELTA	1e-6
+#define DELTA_MAX	1e-6
+#define CHECK_DELTA_REAL(n)	(DELTA_MAX >= n && n >= -DELTA_MAX)
+#define CHECK_DELTA_CPLX(n)	(CHECK_DELTA_REAL(n.r) && CHECK_DELTA_REAL(n.i))
 
 static int	Check(const Polynomial& poly, Solution sol){
-	float r[2] = { 0, 0 };
-	float t[2] = { 0, 0 };
+	Complex r[2] = { 0, 0 };
+	Complex t[2] = { 0, 0 };
 
 	if (sol.solutionCount >= 2)
 		r[1] = PolyCompute(poly, t[1]=sol.solutions[1]);
@@ -43,8 +45,8 @@ static int	Check(const Polynomial& poly, Solution sol){
 	else 
 	{
 		bool ok[2] = {
-			(CHECK_DELTA >= r[0] && r[0] >= -CHECK_DELTA),
-			(CHECK_DELTA >= r[1] && r[1] >= -CHECK_DELTA),
+			CHECK_DELTA_CPLX(r[0]),
+			CHECK_DELTA_CPLX(r[1]),
 		};
 
 		if (ok[0] && ok[1])

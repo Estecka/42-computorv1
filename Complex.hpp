@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:34:52 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 14:48:39 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 15:34:00 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,21 @@ struct Complex {
 
 	Complex&	operator=(const Complex&);
 	Complex&	operator=(float r);
-	bool	operator==(const Complex&);
-	bool	operator!=(const Complex&);
-	bool	operator==(float r);
-	bool	operator!=(float r);
+	bool	operator==(const Complex&) const;
+	bool	operator!=(const Complex&) const;
+	bool	operator==(float r) const;
+	bool	operator!=(float r) const;
+	bool	operator!() const;
+	explicit operator bool() const;
 
-	/**
-	 * The Complex portion of the number
-	 */
-	float i;
 	/**
 	 * The Real portion of the number
 	 */
 	float r;
+	/**
+	 * The Complex portion of the number
+	 */
+	float i;
 };
 
 std::ostream&	operator<<(std::ostream& cout, const Complex& n);

@@ -1,8 +1,10 @@
 HDRS = \
-	Polynomial.hpp
+	Complex.hpp \
+	Polynomial.hpp \
 
 SRCS = main.cpp \
 	atop.cpp \
+	Complex.cpp \
 	compute.cpp \
 	format.cpp \
 	ptoa.cpp \

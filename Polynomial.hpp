@@ -6,11 +6,13 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 13:42:54 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 15:29:32 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+#include "Complex.hpp"
 
 #include <string>
 
@@ -20,13 +22,6 @@
  */
 typedef float	Polynomial[3];
 
-/**
- * Represents a complex number.
- * - [0]	The Real portion of the number.
- * - [1]	The factor of i.
- */
-typedef float	Complex[2];
-
 struct	Solution {
 	int  	degree;
 	float	discriminant;
@@ -35,7 +30,7 @@ struct	Solution {
 	 * are solutions.
 	 */
 	int  	solutionCount;
-	float	solutions[2];
+	Complex	solutions[2];
 };
 
 
@@ -56,11 +51,6 @@ void	atop(const char* str, Polynomial& outPoly);
  */
 std::string	ptoa(const Polynomial& poly, bool pretty=false);
 
-/**
- * Returns a string representation of the given complex number.
- */
-std::string	ctoa(const Complex& n);
-
 
 /**
  * Solves a polynomial equation
@@ -73,10 +63,6 @@ void	PolySolve(const Polynomial& poly, Solution& outSol);
  * Returns the value of the equation `poly` for the given value of x.
  */
 float	PolyCompute(const Polynomial& poly, float x);
-/**
- * Computes the value of the equation `poly` for the given value of x.
- * @param outResult	Outputs the result as a complex number.
- */
-void	PolyCompute(const Polynomial& poly, const Complex& x, Complex outResult);
+Complex	PolyCompute(const Polynomial& poly, const Complex& x);
 
 std::string	SolutionFormat(const Polynomial& poly, const Solution& sol, bool pretty=false);

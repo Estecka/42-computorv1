@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:51:57 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 13:55:41 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 15:21:46 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,4 @@ std::string	ptoa(const Polynomial& poly, bool pretty){
 		cout << " = 0";
 		return cout.str();
 	}
-}
-
-std::string	ctoa(const Complex& n){
-	std::stringstream	cout;
-	
-	if (n[1])
-		cout << n[1] << " * i";
-	if (n[0] && n[1])
-		cout << " + ";
-	if (n[0])
-		cout << n[0];
-
-	return (!n[0] && !n[1]) ? "0" : cout.str();
 }
