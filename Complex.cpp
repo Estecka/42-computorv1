@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:11 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 15:35:36 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 16:17:26 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ bool	Complex::operator!() const { return !this->i && !this->r; }
 Complex::operator bool() const { return this->i || this->r; }
 
 std::ostream&	operator<<(std::ostream& cout, const Complex& n){
-	if (n.i)
-		cout << n.i << " * i";
-	if (n.r && n.i)
-		cout << " + ";
+	if (!n)
+		return cout << "0";
+
 	if (n.r)
 		cout << n.r;
+	if (n.r && n.i)
+		cout << ((n.i<0) ? " - " : " + ");
+	if (n.i)
+		cout << ((n.i<0 && n.r) ? -n.i : n.i) << " i";
 
-	if (!n.r && !n.i)
-		cout << "0";
 	return cout;
 }

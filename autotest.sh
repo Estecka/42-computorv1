@@ -7,9 +7,9 @@ make \
 && ./test/hyperdegree.sh -r $@ \
 && ./test/fake_hyperdegree.sh -r $@ \
 && ./test/pretty_syntax.sh -r $@ \
-&& ./test/no_solution.sh $@ \
 && ./test/0th_degree.sh $@ \
 && ./test/1st_degree.sh $@ \
 && ./test/2nd_degree.sh $@ \
+&& ./test/complex_solutions.sh $@ \
 || echo "Test failed" \
 ;

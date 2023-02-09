@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:10:21 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/10 14:25:59 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 16:06:17 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ std::string	SolutionFormat(const Polynomial& poly, const Solution& sol, bool pre
 		       ;
 	}
 	else if (sol.solutionCount == 2){
-		format << "The solutions are: " << std::endl
-		       << '\t' << LOG_CYAN << sol.solutions[0] << LOG_CLEAR << std::endl
+		if (sol.discriminant < 0)
+			format << "The Complex solutions are: " << std::endl;
+		else
+			format << "The Real solutions are: " << std::endl;
+		format << '\t' << LOG_CYAN << sol.solutions[0] << LOG_CLEAR << std::endl
 		       << '\t' << LOG_CYAN << sol.solutions[1] << LOG_CLEAR << std::endl
 		       ;
 	}
