@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:33:32 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/04 16:48:36 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 14:06:44 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,17 @@
 
 #define CHECK_DELTA	1e-6
 
-static float	Compute(Polynomial poly, float x){
-	return (poly[2]*x*x) + (poly[1]*x) + (poly[0]);
-}
-
-static int	Check(Polynomial poly, Solution sol){
+static int	Check(const Polynomial& poly, Solution sol){
 	float r[2] = { 0, 0 };
 	float t[2] = { 0, 0 };
 
 	if (sol.solutionCount >= 2)
-		r[1] = Compute(poly, t[1]=sol.solutions[1]);
+		r[1] = PolyCompute(poly, t[1]=sol.solutions[1]);
 	if (sol.solutionCount >= 1)
-		r[0] = Compute(poly, t[0]=sol.solutions[0]);
+		r[0] = PolyCompute(poly, t[0]=sol.solutions[0]);
 	if (sol.solutionCount < 0){
-		r[0] = Compute(poly, t[0]=rand()/float(RAND_MAX));
-		r[1] = Compute(poly, t[1]=rand()/float(RAND_MAX));
+		r[0] = PolyCompute(poly, t[0]=rand()/float(RAND_MAX));
+		r[1] = PolyCompute(poly, t[1]=rand()/float(RAND_MAX));
 	}
 
 	if (sol.solutionCount == 0){

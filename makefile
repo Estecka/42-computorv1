@@ -3,6 +3,7 @@ HDRS = \
 
 SRCS = main.cpp \
 	atop.cpp \
+	compute.cpp \
 	format.cpp \
 	ptoa.cpp \
 	solve.cpp \
