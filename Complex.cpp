@@ -6,17 +6,17 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:11 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 16:17:26 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:22:59 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Complex.hpp"
 
 Complex::Complex(void) : r(), i() {}
-Complex::Complex(float _r, float _i) : r(_r), i(_i) {}
+Complex::Complex(double _r, double _i) : r(_r), i(_i) {}
 Complex::Complex(const Complex& other) : r(other.r), i(other.i) {}
 
-Complex&	Complex::operator=(float r){ return *new(this) Complex(r); }
+Complex&	Complex::operator=(double r){ return *new(this) Complex(r); }
 Complex&	Complex::operator=(const Complex& other){ return *new(this) Complex(other); }
 
 bool	Complex::operator==(const Complex& other) const {
@@ -26,10 +26,10 @@ bool	Complex::operator!=(const Complex& other) const {
 	return (this->i != other.i) || (this->r == other.r);
 }
 
-bool	Complex::operator==(float r) const {
+bool	Complex::operator==(double r) const {
 	return (this->i == 0) && (this->r == r);
 }
-bool	Complex::operator!=(float r) const {
+bool	Complex::operator!=(double r) const {
 	return (this->i != 0) || (this->r == r);
 }
 

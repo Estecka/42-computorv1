@@ -6,13 +6,13 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:56:34 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 15:25:56 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Polynomial.hpp"
 
-extern inline float	PolyCompute(const Polynomial& poly, float x){
+extern inline double	PolyCompute(const Polynomial& poly, double x){
 	return (poly[2]*x*x) + (poly[1]*x) + (poly[0]);
 }
 

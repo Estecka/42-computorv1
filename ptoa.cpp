@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:51:57 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 15:21:46 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param power 	b
  * @return	True if anything was output. False if the expression is 0.
  */
-static bool	PowToString(std::stringstream& cout, float factor, int power, bool pretty){
+static bool	PowToString(std::stringstream& cout, double factor, int power, bool pretty){
 	bool printX = power && factor;
 	bool printPower = printX && (power > 1);
 	bool printFactor = factor && (factor!=1 || !printX);

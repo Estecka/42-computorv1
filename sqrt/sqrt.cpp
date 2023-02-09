@@ -6,13 +6,13 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:14:08 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/07 18:39:01 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define SQRT_ITER	100
 
-extern float	sqrt(float f){
+extern double	sqrt(double f){
 	double root = f/10;
 	for (int i=0; i<SQRT_ITER; i++)
 		root = (root + (f/root)) * 0.5f;

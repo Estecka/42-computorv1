@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 01:14:57 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/08 16:18:36 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:31:58 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 /**
  * Represents a polynomial of an arbitrary degree
  */
-typedef std::map<int, float>	PolyDraft;
+typedef std::map<int, double>	PolyDraft;
 
 
 static const char*	SkipSpace(const char* str){
@@ -103,12 +103,12 @@ static bool	GetXPower(const char*& str, int& outPower){
 }
 
 /**
- * @param outFactor	The resulting float, or 1 if none was found.
- * @return	Whether a valid float was found.
+ * @param outFactor	The resulting double, or 1 if none was found.
+ * @return	Whether a valid double was found.
  */
-static bool	GetFloat(const char*& str, float& outFactor){
+static bool	GetDouble(const char*& str, double& outFactor){
 	char* terminator;
-	outFactor = std::strtof(str, &terminator);
+	outFactor = std::strtod(str, &terminator);
 	if (str == terminator){
 		outFactor = 1;
 		return false;
@@ -125,11 +125,11 @@ static bool	GetFloat(const char*& str, float& outFactor){
  * @param outfactor	n, or 1 if ommited.
  * @param outPower	b, or 0 if ommited.
  */
-static void	GetMulOperand(const char*& str, float& outFactor, int& outPower){
+static void	GetMulOperand(const char*& str, double& outFactor, int& outPower){
 	bool hasData = false;
 
 	str = SkipSpace(str);
-	hasData |= GetFloat(str, outFactor);
+	hasData |= GetDouble(str, outFactor);
 	hasData |= GetXPower(str, outPower);
 
 	if (!hasData)
@@ -145,12 +145,12 @@ static bool	GetMul(const char*& str){
 }
 
 
-static void	GetAddOperand(const char*& str, float& outFactor, int& outPower){
+static void	GetAddOperand(const char*& str, double& outFactor, int& outPower){
 	outFactor = 1;
 	outPower  = 0;
 
 	do {
-		float fac;
+		double fac;
 		int   pow;
 		GetMulOperand(str, fac, pow);
 		outFactor *= fac;
@@ -178,7 +178,7 @@ static int	GetAdd(const char*& str){
  */
 static void GetEqHalf(const char*& str, PolyDraft& outPolydraft){
 	int   sign = 1;
-	float factor;
+	double factor;
 	int   power;
 
 	do {
@@ -207,7 +207,7 @@ extern void	atop(const char* str, Polynomial& outPoly){
 	for (PolyDraft::iterator it=left.begin(); it!=left.end(); it++)
 	{
 		int   pow = it->first;
-		float fac = it->second;
+		double fac = it->second;
 
 		if (0<=pow && pow<=2)
 			outPoly[pow] += fac;

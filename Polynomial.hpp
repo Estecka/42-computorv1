@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:07:47 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 15:29:32 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
  * Represents a polynomial of degree 0 to 2.
  * Each index representing the factor for the corresponding power of X.
  */
-typedef float	Polynomial[3];
+typedef double	Polynomial[3];
 
 struct	Solution {
 	int  	degree;
-	float	discriminant;
+	double	discriminant;
 	/*
  	 * The number of solutions between 0 and 2, or -1 if all real numbers 
 	 * are solutions.
@@ -62,7 +62,7 @@ void	PolySolve(const Polynomial& poly, Solution& outSol);
 /**
  * Returns the value of the equation `poly` for the given value of x.
  */
-float	PolyCompute(const Polynomial& poly, float x);
+double	PolyCompute(const Polynomial& poly, double x);
 Complex	PolyCompute(const Polynomial& poly, const Complex& x);
 
 std::string	SolutionFormat(const Polynomial& poly, const Solution& sol, bool pretty=false);

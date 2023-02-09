@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:51:51 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/07 16:01:19 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 #define DELTAMAX	0.1f
 
 extern int	main(int argc, char** argv){
-	std::list<float>	results;
+	std::list<double>	results;
 
 	for (int i=1; i<argc; i++)
 	{
-		float f = atof(argv[i]);
-		float root = sqrt(f);
-		float square = root * root;
-		float delta = (square-f) / f;
+		double f = atof(argv[i]);
+		double root = sqrt(f);
+		double square = root * root;
+		double delta = (square-f) / f;
 		results.push_back(delta);
 
 		const char* color;
@@ -41,8 +41,8 @@ extern int	main(int argc, char** argv){
 		          << std::endl;
 	}
 
-	float deltaMax=0, deltaAvg=0;
-	for (std::list<float>::iterator it=results.begin(); it!=results.end(); ++it){
+	double deltaMax=0, deltaAvg=0;
+	for (std::list<double>::iterator it=results.begin(); it!=results.end(); ++it){
 		if (!(*it == *it) || (*it == *it*0.5)) // Exclude NaN and inf
 			continue;
 		if (*it < 0)

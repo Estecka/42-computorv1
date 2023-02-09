@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 16:36:52 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 15:48:11 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:23:44 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ static void	Deg2Solve (const Polynomial& poly, Solution& outSol){
 		outSol.solutionCount = 1;
 	}
 	else if (outSol.discriminant > 0){
-		float disRoot = sqrt(outSol.discriminant);
+		double disRoot = sqrt(outSol.discriminant);
 		outSol.solutions[0] = (-poly[1] - disRoot) / (2*poly[2]);
 		outSol.solutions[1] = (-poly[1] + disRoot) / (2*poly[2]);
 		outSol.solutionCount = 2;
 	} 
 	else {
-		float disRoot = sqrt(-outSol.discriminant);
+		double disRoot = sqrt(-outSol.discriminant);
 		outSol.solutions[0].r = (-poly[1]) / (2*poly[2]);
 		outSol.solutions[0].i = (-disRoot) / (2*poly[2]);
-		outSol.solutions[1].r = +outSol.solutions[0].r;
+		outSol.solutions[1].r =  outSol.solutions[0].r;
 		outSol.solutions[1].i = -outSol.solutions[0].i;
 		outSol.solutionCount = 2;
 	}

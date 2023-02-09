@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:33:32 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 15:40:09 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static int	Check(const Polynomial& poly, Solution sol){
 	if (sol.solutionCount >= 1)
 		r[0] = PolyCompute(poly, t[0]=sol.solutions[0]);
 	if (sol.solutionCount < 0){
-		r[0] = PolyCompute(poly, t[0]=rand()/float(RAND_MAX));
-		r[1] = PolyCompute(poly, t[1]=rand()/float(RAND_MAX));
+		r[0] = PolyCompute(poly, t[0]=rand()/double(RAND_MAX));
+		r[1] = PolyCompute(poly, t[1]=rand()/double(RAND_MAX));
 	}
 
 	if (sol.solutionCount == 0){
-		std::cout << LOG_BOLD_YELLOW "Check manually" LOG_CLEAR << std::endl;
+		// std::cout << LOG_BOLD_YELLOW "Check manually" LOG_CLEAR << std::endl;
 		return EXIT_SUCCESS;
 	}
 	else if (!r[0] && !r[1]){

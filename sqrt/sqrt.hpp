@@ -6,10 +6,10 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:39:31 by abaur             #+#    #+#             */
-/*   Updated: 2023/01/31 14:40:05 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-float	sqrt(float);
+double	sqrt(double);
