@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:33:32 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:35:36 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#define DELTA_MAX	1e-6
+#define DELTA_MAX	1e-14
 #define CHECK_DELTA_REAL(n)	(DELTA_MAX >= n && n >= -DELTA_MAX)
 #define CHECK_DELTA_CPLX(n)	(CHECK_DELTA_REAL(n.r) && CHECK_DELTA_REAL(n.i))
 

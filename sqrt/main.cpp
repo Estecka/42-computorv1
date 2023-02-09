@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:51:51 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 17:26:42 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:36:47 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <list>
 
-#define DELTAMAX	0.1f
+#define DELTAMAX	1e-15
 
 extern int	main(int argc, char** argv){
 	std::list<double>	results;
