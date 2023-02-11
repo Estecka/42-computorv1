@@ -6,7 +6,7 @@
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 17:33:32 by abaur             #+#    #+#             */
-/*   Updated: 2023/02/09 17:35:36 by abaur            ###   ########.fr       */
+/*   Updated: 2023/02/11 18:58:42 by abaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ extern int	main(int argc, char** argv){
 	bool pretty = false;
 	bool reduce = false;
 
-	argc++, argv++;
-	for ( ; argc>0; argc++, argv++){
+	argc--, argv++;
+	for ( ; argc>0; argc--, argv++){
 		std::string a = *argv;
 		if (a=="--pretty" || a=="-p")
 			pretty = true;
